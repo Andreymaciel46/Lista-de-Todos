@@ -9,6 +9,7 @@ var todos = [
 ]
 
 function rendeTodos(){
+    listElement.innerHTML = ''
     for (todo of todos){
         var listaLI = document.createElement('li')
         var texTodo = document.createTextNode(todo)
@@ -18,3 +19,11 @@ function rendeTodos(){
     }
 }
 rendeTodos()
+
+function addTodos(){
+    var addtodo = textElement.value
+    todos.push(addtodo)
+    textElement.value = ''
+    rendeTodos()
+}
+buttonElement.onclick = addTodos
