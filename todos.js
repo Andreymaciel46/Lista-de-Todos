@@ -2,11 +2,12 @@ var listElement = document.querySelector('.list ul')
 var textElement = document.querySelector('.list input')
 var buttonElement = document.querySelector('.list button')
 
-var todos = [
+var todos = JSON.parse(localStorage.getItem('List_Todos')) || []
+/*[
     'Fazer Café',
     'Ler um Livro',
     'Acessar site'
-]
+]*/
 
 function rendeTodos(){
     listElement.innerHTML = ''
@@ -35,10 +36,16 @@ function addTodos(){
     todos.push(addtodo) //Adiciona itens a lista
     textElement.value = ''
     rendeTodos()
+    saveTostorage()
 }
 buttonElement.onclick = addTodos
 
 function deletTodos(pos){
     todos.splice(pos, 1) //Remove itens da lista
     rendeTodos()
+    saveTostorage()
+}
+
+function saveTostorage(){
+    localStorage.setItem('List_Todos', JSON.stringify(todos))
 }
